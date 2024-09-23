@@ -12,7 +12,7 @@ withDefaults(defineProps<IAddTodoProps>(), {
   <Teleport to="body">
     <article
       v-if="isOpen"
-      class="absolute top-0 left-0 flex items-center justify-center h-full w-full bg-black bg-opacity-50 flex-col z-1"
+      class="fixed top-0 left-0 flex items-center justify-center h-full w-full bg-black bg-opacity-50 flex-col z-1"
     >
       <div class="bg-white rounded-md px-4 py-2">
         <section class="add-modal__content-slot">

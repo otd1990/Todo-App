@@ -4,8 +4,17 @@ import { useTodosStore } from '@/stores/todos'
 import TodoList from '@/components/ui/todo-list/TodoList.vue'
 import ButtonComponent from '../button-component/ButtonComponent.vue'
 
-const props = defineProps<{ title: string }>()
-const emit = defineEmits(['add-todo'])
+interface ITodoSectionProps {
+  title?: string
+}
+
+const props = withDefaults(defineProps<ITodoSectionProps>(), {
+  title: 'Section Title'
+})
+
+const emit = defineEmits<{
+  (e: 'add-todo'): void
+}>()
 const todosStore = useTodosStore()
 
 onMounted(() => {

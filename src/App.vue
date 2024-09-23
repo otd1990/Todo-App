@@ -7,15 +7,17 @@ const isModalOpen = ref(false)
 
 const handleAddTodo = () => {
   isModalOpen.value = true
+  document.body.style.overflow = 'hidden'
 }
 
 const handleCloseModal = () => {
   isModalOpen.value = false
+  document.body.style.overflow = 'scroll'
 }
 </script>
 
 <template>
-  <div id="tc-vue-template">
+  <div id="tc-vue-template" class="p-2">
     <section class="text-center">
       <h1 class="text-xl">Your Tasks</h1>
       <p>Below are a list of your tasks. You can; add, track and complete them here.</p>
