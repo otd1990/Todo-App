@@ -30,9 +30,7 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   const removeTodo = (id: string) => {
-    console.log('Removing todo')
     todos.value = todos.value.filter((todo) => todo.id !== id)
-    console.log('TODOS ', todos.value)
   }
 
   const updateTodoStatus = (id: string, status: string) => {
