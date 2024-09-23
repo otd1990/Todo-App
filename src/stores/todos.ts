@@ -18,10 +18,38 @@ export const useTodosStore = defineStore('todos', () => {
   )
   const completedTodos = computed(() => todos.value.filter((todo) => todo.status === 'completed'))
 
+  const getTodosFromAPI = async () => {
+    try {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users/1/todos')
+      if (!res.ok) throw new Error('There was an error')
+      const data = await res.json()
+
+      const newTodos = data.map((todo) => {
+        if (todo.completed) {
+          return {
+            ...todo,
+            status: 'completed'
+          }
+        } else {
+          return {
+            ...todo,
+            status: 'new'
+          }
+        }
+      })
+
+      todos.value = newTodos
+    } catch (error) {
+      console.error('There was an error fetching from API')
+    }
+  }
+
   const getTodos = () => {
     const storedTodos = localStorage.getItem('todolist')
-    if (storedTodos) {
+    if (storedTodos !== null) {
       todos.value = JSON.parse(storedTodos)
+    } else {
+      getTodosFromAPI()
     }
   }
 

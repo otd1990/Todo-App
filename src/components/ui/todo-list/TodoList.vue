@@ -32,17 +32,18 @@ const getButtonText = (status: string) => {
 const prepareDelete = (id: string) => {
   todoToDelete = id
   isOpen.value = true
+  document.body.style.overflow = 'hidden'
 }
 
 const handleDelete = () => {
   todosStore.removeTodo(todoToDelete)
-  isOpen.value = false
-  todoToDelete = ''
+  handleCancel()
 }
 
-const handleDeleteCancel = () => {
+const handleCancel = () => {
   todoToDelete = ''
   isOpen.value = false
+  document.body.style.overflow = 'scroll'
 }
 
 const handleUpdate = (id: string, status: string) => {
@@ -92,7 +93,7 @@ const handleUpdate = (id: string, status: string) => {
     </template>
     <template #buttons>
       <section class="flex items-center justify-between">
-        <ButtonComponent @click="handleDeleteCancel" variant="default" size="sm" class="block">
+        <ButtonComponent @click="handleCancel" variant="default" size="sm" class="block">
           Cancel
         </ButtonComponent>
         <ButtonComponent @click="handleDelete" variant="destructive" size="sm" class="block">
