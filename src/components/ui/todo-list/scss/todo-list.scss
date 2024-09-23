@@ -1,0 +1,25 @@
+.todo-list {
+  &__item {
+    background-color: $white;
+    list-style: none;
+    padding: 0.5rem;
+
+    & + & {
+      margin-top: 1rem;
+    }
+  }
+
+  &__item-desc {
+    margin: 0.5rem 0;
+    color: $light-grey;
+    font-size: 0.9rem;
+  }
+
+  &__item-controls {
+    @include flex-between-center;
+
+    &:first-child {
+      margin-right: 0.25rem;
+    }
+  }
+}
